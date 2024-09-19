@@ -32,10 +32,10 @@
     </developers>
     <scm child.scm.connection.inherit.append.path="false" child.scm.developerConnection.inherit.append.path="false"
          child.scm.url.inherit.append.path="false">
-        <connection>scm:git:https://github.com/${gitHubRepo}</connection>
-        <developerConnection>scm:git:https://github.com/${gitHubRepo}</developerConnection>
-        <tag>${scmTag}</tag>
-        <url>https://github.com/${gitHubRepo}</url>
+        <connection>scm:git:https://github.com/kun303-cloud/job-status-listener</connection>
+        <developerConnection>scm:git:https://github.com/kun303-cloud/job-status-listener.git</developerConnection>
+        <tag>main</tag>
+        <url>https://github.com/kun303-cloud/job-status-listener</url>
     </scm>
 
     <properties>
