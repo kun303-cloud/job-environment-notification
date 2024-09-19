@@ -1,4 +1,4 @@
 <?jelly escape-by-default='true'?>
 <div>
-    TODO
+    This plugin helps users upload files or folders and send task notifications, as well as pipeline execution status updates.
 </div>

@@ -1,0 +1,27 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core"
+         xmlns:f="/lib/form">
+    <f:section title="Webhook Notification">
+        <f:entry title="${%requestUrl}" field="requestUrl">
+            <f:textbox/>
+        </f:entry>
+        <f:entry title="${%requestMethod}" field="requestMethod">
+            <select name="requestMethod">
+                <option value="GET">${%requestMethodGET}</option>
+                <option value="POST">${%requestMethodPOST}</option>
+                <option value="PUT">${%requestMethodPUT}</option>
+                <option value="DELETE">${%requestMethodDELETE}</option>
+            </select>
+        </f:entry>
+        <f:entry title="${%requestHeader}">
+        </f:entry>
+        <f:repeatable var="property" name="httpHeaders">
+            <f:entry title="${%headerKey}" field="headerKey">
+                <f:textbox/>
+            </f:entry>
+            <f:entry title="${%headerValue}" field="headerValue">
+                <f:textbox/>
+            </f:entry>
+        </f:repeatable>
+    </f:section>
+</j:jelly>
