@@ -41,7 +41,11 @@ public class NotificationStep extends Builder implements SimpleBuildStep {
     public void perform(@NonNull Run<?, ?> run, @NonNull FilePath workspace, @NonNull EnvVars env, @NonNull Launcher launcher, @NonNull TaskListener listener) throws InterruptedException, IOException {
         var envVar = Utils.getEnvVars(run, listener, JobStatus.RUNNING);
         envVar.put("body", body);
-        HttpClient.executeRequest(envVar);
+        try {
+            HttpClient.executeRequest(envVar);
+        } catch (Exception e) {
+            listener.getLogger().println(e);
+        }
     }
 
 

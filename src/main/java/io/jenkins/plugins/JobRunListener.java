@@ -38,7 +38,7 @@ public class JobRunListener extends RunListener<Run<?, ?>> {
         try {
             EnvVars vars = getEnvVars(run, listener,jobStatus);
             HttpClient.executeRequest(vars);
-        } catch (IOException | InterruptedException e) {
+        } catch (Exception e) {
             listener.getLogger().println(e);
         }
     }

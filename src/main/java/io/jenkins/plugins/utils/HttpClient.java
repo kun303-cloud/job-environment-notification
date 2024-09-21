@@ -9,10 +9,16 @@ import jenkins.model.GlobalConfiguration;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -28,13 +34,13 @@ import java.util.concurrent.TimeUnit;
 public class HttpClient {
 
 
-    public static void executeRequest(Map<String, String> requestMap) throws IOException {
+    public static void executeRequest(Map<String, String> requestMap) throws Exception {
         var sysConfig = GlobalConfiguration.all().get(JobRunListenerSysConfig.class);
         log.info("Job Notification sysConfig : {}" , sysConfig);
         assert sysConfig != null;
         String url = sysConfig.getRequestUrl();
         var method = sysConfig.getRequestMethod();
-        OkHttpClient client = new OkHttpClient.Builder().readTimeout(5, TimeUnit.SECONDS).build();
+        OkHttpClient client = getUnsafeOkHttpClient();
         RequestBody requestBody = null;
         if (method == HttpMethod.GET) {
             String params = convertMapToRequestParam(requestMap);
@@ -60,7 +66,50 @@ public class HttpClient {
 
 
     }
+    private static OkHttpClient getUnsafeOkHttpClient() throws Exception {
+        try {
+            // Create a trust manager that does not validate certificate chains
+            final TrustManager[] trustAllCerts = new TrustManager[]{
+                    new X509TrustManager() {
+                        @Override
+                        public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+                            // No-op: Trust all client certificates
+                        }
 
+                        @Override
+                        public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+                            // No-op: Trust all server certificates
+                        }
+
+                        @Override
+                        public X509Certificate[] getAcceptedIssuers() {
+                            return new X509Certificate[]{};
+                        }
+                    }
+            };
+
+            // Install the all-trusting trust manager
+            final SSLContext sslContext = SSLContext.getInstance("SSL");
+            sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
+
+            // Create an ssl socket factory with our all-trusting manager
+            final SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
+
+            // Build the OkHttpClient that uses the unsafe SSL settings
+            OkHttpClient.Builder builder = new OkHttpClient.Builder();
+            builder.sslSocketFactory(sslSocketFactory, (X509TrustManager) trustAllCerts[0]);
+            builder.hostnameVerifier((hostname, session) -> true);  // Disable hostname verification
+
+            // Optionally configure other settings (e.g., timeouts)
+            builder.connectTimeout(30, TimeUnit.SECONDS)
+                    .readTimeout(30, TimeUnit.SECONDS)
+                    .writeTimeout(30, TimeUnit.SECONDS);
+
+            return builder.build();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
     private static Request buildRequest(String url, HttpMethod method, List<HttpHeader> headers, RequestBody requestBody) {
         if(null != url && !url.isEmpty()){
             Request.Builder requestBuilder = new Request.Builder().url(url);

@@ -11,12 +11,13 @@
     </parent>
 
     <groupId>io.jenkins.plugins</groupId>
-    <artifactId>job-listener</artifactId>
+    <artifactId>job-status-notification</artifactId>
     <version>${revision}${changelist}</version>
     <packaging>hpi</packaging>
 
-    <name>Job Notification</name>
+    <name>Job Status Notification</name>
     <url>https://github.com/jenkinsci/${project.artifactId}-plugin</url>
+    <description>Dispatch job status notifications and incorporate notification steps into the build process.</description>
     <licenses>
         <license>
             <name>MIT License</name>
