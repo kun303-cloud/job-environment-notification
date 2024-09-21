@@ -68,43 +68,10 @@ public class HttpClient {
     }
     private static OkHttpClient getUnsafeOkHttpClient() throws Exception {
         try {
-            // Create a trust manager that does not validate certificate chains
-            final TrustManager[] trustAllCerts = new TrustManager[]{
-                    new X509TrustManager() {
-                        @Override
-                        public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
-                            // No-op: Trust all client certificates
-                        }
-
-                        @Override
-                        public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
-                            // No-op: Trust all server certificates
-                        }
-
-                        @Override
-                        public X509Certificate[] getAcceptedIssuers() {
-                            return new X509Certificate[]{};
-                        }
-                    }
-            };
-
-            // Install the all-trusting trust manager
-            final SSLContext sslContext = SSLContext.getInstance("SSL");
-            sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
-
-            // Create an ssl socket factory with our all-trusting manager
-            final SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
-
-            // Build the OkHttpClient that uses the unsafe SSL settings
-            OkHttpClient.Builder builder = new OkHttpClient.Builder();
-            builder.sslSocketFactory(sslSocketFactory, (X509TrustManager) trustAllCerts[0]);
-            builder.hostnameVerifier((hostname, session) -> true);  // Disable hostname verification
-
             // Optionally configure other settings (e.g., timeouts)
-            builder.connectTimeout(30, TimeUnit.SECONDS)
+           var builder =  new OkHttpClient.Builder().connectTimeout(30, TimeUnit.SECONDS)
                     .readTimeout(30, TimeUnit.SECONDS)
                     .writeTimeout(30, TimeUnit.SECONDS);
-
             return builder.build();
         } catch (Exception e) {
             throw new RuntimeException(e);

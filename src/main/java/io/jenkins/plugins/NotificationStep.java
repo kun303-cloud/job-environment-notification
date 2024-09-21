@@ -10,7 +10,6 @@ import hudson.model.Run;
 import hudson.model.TaskListener;
 import hudson.tasks.BuildStepDescriptor;
 import hudson.tasks.Builder;
-import hudson.util.FormValidation;
 import io.jenkins.plugins.enums.JobStatus;
 import io.jenkins.plugins.utils.HttpClient;
 import io.jenkins.plugins.utils.Utils;
@@ -18,7 +17,6 @@ import jenkins.tasks.SimpleBuildStep;
 import lombok.Data;
 import org.jenkinsci.Symbol;
 import org.kohsuke.stapler.DataBoundConstructor;
-import org.kohsuke.stapler.QueryParameter;
 
 import java.io.IOException;
 
@@ -52,12 +50,6 @@ public class NotificationStep extends Builder implements SimpleBuildStep {
     @Symbol("notify")
     @Extension
     public static final class DescriptorImpl extends BuildStepDescriptor<Builder> {
-        public FormValidation doCheckName(@QueryParameter String body) {
-            if (body.isEmpty()) {
-                return FormValidation.error(Messages.NotificationStep_notify_body_errors_empty());
-            }
-            return FormValidation.ok();
-        }
 
         @NonNull
         @Override
