@@ -59,7 +59,7 @@ No complex setup required—just add your information to the body and the plugin
 ### Sample request
 
 **The pipeline starts to execute** POST request
-The two fields of **buildNo** , **jobExecuteStatus** and **body**are added by the plugin, and the others are environment variables, and build with parameter will also be in the environment variables
+The fields of **buildNo** , **jobExecuteStatus** and **body** are added by the plugin, and the others are environment variables, and build with parameter will also be in the environment variables
 **jobExecuteStatus** has the following parameters:
   + START
   + RUNNING
