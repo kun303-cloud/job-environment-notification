@@ -56,6 +56,100 @@ To begin using the plugin and integrating your external system with Jenkins pipe
 + The request will automatically use the configured **URL**, **method**, and **headers**.
 No complex setup required—just add your information to the body and the plugin will send it as part of the notification!
 
+### Sample request
+
+**The pipeline starts to execute** POST request
+The two fields of **buildNo** , **jobExecuteStatus** and **body**are added by the plugin, and the others are environment variables, and build with parameter will also be in the environment variables
+**jobExecuteStatus** has the following parameters:
+  + START
+  + RUNNING
+  + COMPLETE
+  + SUCCESS
+  + UNSTABLE
+  + FAILURE
+  + NOT_BUILT
+  + ABORTED
+```json
+{
+  "buildNo": "3",
+  "jobExecuteStatus": "RUNNING",
+  "body":"ssh executed !",
+  "BUILD_DISPLAY_NAME": "#3",
+  "BUILD_ID": "3",
+  "BUILD_NUMBER": "3",
+  "BUILD_TAG": "jenkins-test-folder-openssh9-test-3",
+  "BUILD_URL": "http://api.example.com:39931/job/test-folder/job/openssh9-test/3/",
+  "CI": "true",
+  "CLASSPATH": "",
+  "COPY_REFERENCE_FILE_LOG": "/var/jenkins_home/copy_reference_file.log",
+  "DSO_URL_PATH": "http://api.example.com:32553/",
+  "EXECUTOR_NUMBER": "-1",
+  "HOME": "/root",
+  "HOSTNAME": "jenkins-service-5ccc5794f4-8cjr4",
+  "HUDSON_HOME": "/var/jenkins_home",
+  "HUDSON_SERVER_COOKIE": "c5e3ffff68935f12",
+  "HUDSON_URL": "http://api.example.com:39931/",
+  "JAVA_HOME": "/opt/java/openjdk",
+  "JENKINS_HOME": "/var/jenkins_home",
+  "JENKINS_INCREMENTALS_REPO_MIRROR": "https://repo.jenkins-ci.org/incrementals",
+  "JENKINS_PORT": "tcp://127.0.0.1:50000",
+  "JENKINS_PORT_50000_TCP": "tcp://127.0.0.1:50000",
+  "JENKINS_PORT_50000_TCP_ADDR": "127.0.0.1",
+  "JENKINS_PORT_50000_TCP_PORT": "50000",
+  "JENKINS_PORT_50000_TCP_PROTO": "tcp",
+  "JENKINS_PORT_8080_TCP": "tcp://127.0.0.1:8080",
+  "JENKINS_PORT_8080_TCP_ADDR": "127.0.0.1",
+  "JENKINS_PORT_8080_TCP_PORT": "8080",
+  "JENKINS_PORT_8080_TCP_PROTO": "tcp",
+  "JENKINS_SERVER_COOKIE": "c5e3ffff68935f12",
+  "JENKINS_SERVICE_HOST": "127.0.0.1",
+  "JENKINS_SERVICE_NODE_PORT": "tcp://127.0.0.1:8080",
+  "JENKINS_SERVICE_NODE_PORT_50000_TCP": "tcp://127.0.0.1:50000",
+  "JENKINS_SERVICE_NODE_PORT_50000_TCP_ADDR": "127.0.0.1",
+  "JENKINS_SERVICE_NODE_PORT_50000_TCP_PORT": "50000",
+  "JENKINS_SERVICE_NODE_PORT_50000_TCP_PROTO": "tcp",
+  "JENKINS_SERVICE_NODE_PORT_8080_TCP": "tcp://127.0.0.1:8080",
+  "JENKINS_SERVICE_NODE_PORT_8080_TCP_ADDR": "127.0.0.1",
+  "JENKINS_SERVICE_NODE_PORT_8080_TCP_PORT": "8080",
+  "JENKINS_SERVICE_NODE_PORT_8080_TCP_PROTO": "tcp",
+  "JENKINS_SERVICE_NODE_SERVICE_HOST": "127.0.0.1",
+  "JENKINS_SERVICE_NODE_SERVICE_PORT": "8080",
+  "JENKINS_SERVICE_NODE_SERVICE_PORT_JENKINS_SERVICE_NODE_50000": "50000",
+  "JENKINS_SERVICE_NODE_SERVICE_PORT_JENKINS_SERVICE_NODE_8080": "8080",
+  "JENKINS_SERVICE_PORT": "50000",
+  "JENKINS_SERVICE_PORT_JENKINS_50000": "50000",
+  "JENKINS_SERVICE_PORT_JENKINS_8080": "8080",
+  "JENKINS_SLAVE_AGENT_PORT": "50000",
+  "JENKINS_UC": "https://updates.jenkins.io",
+  "JENKINS_UC_EXPERIMENTAL": "https://updates.jenkins.io/experimental",
+  "JENKINS_URL": "http://api.example.com:39931/",
+  "JENKINS_VERSION": "2.469",
+  "JOB_BASE_NAME": "openssh9-test",
+  "JOB_DISPLAY_URL": "http://api.example.com:39931/job/test-folder/job/openssh9-test/display/redirect",
+  "JOB_EXECUTE_STATUS": "RUNNING",
+  "JOB_NAME": "test-folder/openssh9-test",
+  "JOB_URL": "http://api.example.com:39931/job/test-folder/job/openssh9-test/",
+  "KUBERNETES_PORT": "tcp://127.0.0.1:443",
+  "KUBERNETES_PORT_443_TCP": "tcp://127.0.0.1:443",
+  "KUBERNETES_PORT_443_TCP_ADDR": "127.0.0.1",
+  "KUBERNETES_PORT_443_TCP_PORT": "443",
+  "KUBERNETES_PORT_443_TCP_PROTO": "tcp",
+  "KUBERNETES_SERVICE_HOST": "127.0.0.1",
+  "KUBERNETES_SERVICE_PORT": "443",
+  "KUBERNETES_SERVICE_PORT_HTTPS": "443",
+  "LANG": "C.UTF-8",
+  "NODE_LABELS": "built-in master",
+  "NODE_NAME": "built-in",
+  "PATH": "/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+  "PWD": "/",
+  "REF": "/usr/share/jenkins/ref",
+  "RUN_ARTIFACTS_DISPLAY_URL": "http://api.example.com:39931/job/test-folder/job/openssh9-test/3/display/redirect?page=artifacts",
+  "RUN_CHANGES_DISPLAY_URL": "http://api.example.com:39931/job/test-folder/job/openssh9-test/3/display/redirect?page=changes",
+  "RUN_DISPLAY_URL": "http://api.example.com:39931/job/test-folder/job/openssh9-test/3/display/redirect",
+  "RUN_TESTS_DISPLAY_URL": "http://api.example.com:39931/job/test-folder/job/openssh9-test/3/display/redirect?page=tests",
+  "SHLVL": "0"
+}
+```
 
 ## LICENSE
 

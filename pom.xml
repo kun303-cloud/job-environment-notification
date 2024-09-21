@@ -28,7 +28,7 @@
         <developer>
             <id>thomson</id>
             <name>kun.tang</name>
-            <email>2825064@qq.com</email>
+            <email>kun.tang@daocloud.io</email>
         </developer>
     </developers>
     <scm child.scm.connection.inherit.append.path="false" child.scm.developerConnection.inherit.append.path="false"
