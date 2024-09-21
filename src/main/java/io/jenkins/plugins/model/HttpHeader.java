@@ -1,6 +1,7 @@
 package io.jenkins.plugins.model;
 
 import lombok.Data;
+import lombok.ToString;
 import org.kohsuke.stapler.DataBoundConstructor;
 
 /**
@@ -11,6 +12,7 @@ import org.kohsuke.stapler.DataBoundConstructor;
 
 
 @Data
+@ToString
 public class HttpHeader {
 
     private  String headerKey;

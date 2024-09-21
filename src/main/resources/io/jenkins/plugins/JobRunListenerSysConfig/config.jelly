@@ -6,23 +6,42 @@
             <f:textbox/>
         </f:entry>
         <f:entry title="${%requestMethod}" field="requestMethod">
-            <select name="requestMethod" >
-                <option value="POST" selected = "${instance.requestMethod == 'POST' ? 'true' : null}" >${%requestMethodPOST}</option>
-                <option value="GET"  selected = "${instance.requestMethod == 'GET' ? 'true' : null }" >${%requestMethodGET}</option>
-                <option value="PUT" selected = "${instance.requestMethod == 'PUT' ? 'true' : null}">${%requestMethodPUT}</option>
-                <option value="DELETE" selected = "${instance.requestMethod == 'DELETE' ? 'true' : null}">${%requestMethodDELETE}</option>
+            <select name="requestMethod">
+                <option value="POST" selected="${instance.requestMethod == 'POST' ? 'true' : null}">
+                    ${%requestMethodPOST}
+                </option>
+                <option value="GET" selected="${instance.requestMethod == 'GET' ? 'true' : null }">
+                    ${%requestMethodGET}
+                </option>
+                <option value="PUT" selected="${instance.requestMethod == 'PUT' ? 'true' : null}">${%requestMethodPUT}
+                </option>
+                <option value="DELETE" selected="${instance.requestMethod == 'DELETE' ? 'true' : null}">
+                    ${%requestMethodDELETE}
+                </option>
             </select>
         </f:entry>
         <f:entry title="${%requestHeader}">
-            <f:repeatable var="header" name="httpHeaders"    items="${instance.httpHeaders}">
-                <f:entry title="${%headerKey}" >
-                    <f:textbox name="headerKey" value="${header.headerKey}"/>
+            <f:repeatable var="header" name="httpHeaders" items="${instance.httpHeaders}">
+
+                <f:entry title="${%headerKey}">
+                    <f:textbox name="headerKey" field="headerKey" value="${header.headerKey}"
+                               onblur="handleBlur(this);"/>
                 </f:entry>
-                <f:entry title="${%headerValue}" >
-                    <f:textbox name="headerValue" value="${header.headerValue}"/>
+                <f:entry title="${%headerValue}">
+                    <j:choose>
+                        <j:when test="${header.headerKey.toLowerCase() == 'password'}">
+                            <f:password name="headerValue" value="${header.headerValue}"/>
+                        </j:when>
+                        <j:otherwise>
+                            <f:textbox name="headerValue" value="${header.headerValue}"/>
+                        </j:otherwise>
+                    </j:choose>
                 </f:entry>
-                <f:repeatableDeleteButton />
+                <f:repeatableDeleteButton/>
+
             </f:repeatable>
         </f:entry>
     </f:section>
+    <script type="text/javascript" src="${rootURL}/plugin/pipeline-status-notification-plugin/checkHeaderKey.js"/>
 </j:jelly>
+

@@ -20,6 +20,9 @@ import org.kohsuke.stapler.DataBoundConstructor;
 
 import java.io.IOException;
 
+import static io.jenkins.plugins.enums.Constants.NOTIFY_CONTENT;
+import static io.jenkins.plugins.enums.Constants.STEP_NAME;
+
 /**
  * Author: kun.tang@daocloud.io
  * Date:2024/9/18
@@ -38,7 +41,7 @@ public class NotificationStep extends Builder implements SimpleBuildStep {
     @Override
     public void perform(@NonNull Run<?, ?> run, @NonNull FilePath workspace, @NonNull EnvVars env, @NonNull Launcher launcher, @NonNull TaskListener listener) throws InterruptedException, IOException {
         var envVar = Utils.getEnvVars(run, listener, JobStatus.RUNNING);
-        envVar.put("body", body);
+        envVar.put(NOTIFY_CONTENT, body);
         try {
             HttpClient.executeRequest(envVar);
         } catch (Exception e) {
@@ -47,7 +50,7 @@ public class NotificationStep extends Builder implements SimpleBuildStep {
     }
 
 
-    @Symbol("notify")
+    @Symbol(STEP_NAME)
     @Extension
     public static final class DescriptorImpl extends BuildStepDescriptor<Builder> {
 

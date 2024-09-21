@@ -6,10 +6,14 @@ import io.jenkins.plugins.model.HttpHeader;
 import jenkins.model.GlobalConfiguration;
 import lombok.Getter;
 import lombok.ToString;
+import lombok.extern.slf4j.Slf4j;
 import net.sf.json.JSONObject;
 import org.kohsuke.stapler.StaplerRequest;
 
 import java.util.List;
+
+import static io.jenkins.plugins.enums.Constants.*;
+import static io.jenkins.plugins.utils.Utils.encoderPassword;
 
 /**
  * Author: kun.tang@daocloud.io
@@ -21,6 +25,7 @@ import java.util.List;
 @Getter
 @Extension
 @ToString
+@Slf4j
 public class JobRunListenerSysConfig extends GlobalConfiguration {
 
     public JobRunListenerSysConfig() {
@@ -38,12 +43,12 @@ public class JobRunListenerSysConfig extends GlobalConfiguration {
     @Override
     public boolean configure(StaplerRequest req, JSONObject json) {
         // 从json对象中读取并设置requestUrl
-        requestUrl = json.getString("requestUrl");
+        requestUrl = json.getString(FORM_KEY_REQUEST_URL);
         setRequestUrl(requestUrl);
         // 读取并设置httpHeaders
-        httpHeaders = req.bindJSONToList(HttpHeader.class, json.get("httpHeaders"));
+        httpHeaders = req.bindJSONToList(HttpHeader.class, json.get(FORM_KEY_REQUEST_HEADERS));
         setHttpHeaders(httpHeaders);
-        String requestMethodOption = json.getString("requestMethod");
+        String requestMethodOption = json.getString(FORM_KEY_REQUEST_METHOD);
         setRequestMethod(HttpMethod.valueOf(requestMethodOption));
         save(); // 保存配置
 
@@ -57,6 +62,7 @@ public class JobRunListenerSysConfig extends GlobalConfiguration {
     }
 
     public void setHttpHeaders(List<HttpHeader> httpHeaders) {
+        encoderPassword(httpHeaders);
         this.httpHeaders = httpHeaders;
         save();
     }

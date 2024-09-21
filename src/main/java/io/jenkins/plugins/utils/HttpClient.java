@@ -24,6 +24,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import static io.jenkins.plugins.utils.Utils.decoderPassword;
+
 
 /**
  * Author: kun.tang@daocloud.io
@@ -49,7 +51,7 @@ public class HttpClient {
             var requestParams = JSONObject.from(requestMap);
             requestBody = RequestBody.create(requestParams.toJSONString(), MediaType.parse("application/json"));
         }
-
+        decoderPassword(sysConfig.getHttpHeaders());
         Request request = buildRequest(url, method, sysConfig.getHttpHeaders(), requestBody);
         assert request != null;
         // 执行请求
@@ -104,7 +106,9 @@ public class HttpClient {
             }
             if (null != headers && !headers.isEmpty()) {
                 for (HttpHeader header : headers) {
-                    requestBuilder.addHeader(header.getHeaderKey(), header.getHeaderValue());
+                    if(null != header.getHeaderKey() && null != header.getHeaderValue()){
+                        requestBuilder.addHeader(header.getHeaderKey(), header.getHeaderValue());
+                    }
                 }
             }
             return requestBuilder.build();
