@@ -12,10 +12,10 @@
 
     <groupId>io.jenkins.plugins</groupId>
     <artifactId>pipeline-status-notification</artifactId>
-    <version>${revision}${changelist}</version>
+    <version>${revision}</version>
     <packaging>hpi</packaging>
 
-    <name>Job Status Notification</name>
+    <name>Pipeline Status Notification</name>
     <url>https://github.com/jenkinsci/${project.artifactId}-plugin</url>
     <description>Dispatch job status notifications and incorporate notification steps into the build process.</description>
     <licenses>
@@ -40,8 +40,7 @@
     </scm>
 
     <properties>
-        <revision>1.0</revision>
-        <changelist>-SNAPSHOT</changelist>
+        <revision>1.06</revision>
         <!-- https://www.jenkins.io/doc/developer/plugin-development/choosing-jenkins-baseline/ -->
         <jenkins.version>2.440.3</jenkins.version>
         <gitHubRepo>jenkinsci/${project.artifactId}-plugin</gitHubRepo>

@@ -10,6 +10,7 @@ import io.jenkins.plugins.enums.ConstantsEnums;
 import io.jenkins.plugins.enums.JobStatus;
 import io.jenkins.plugins.model.HttpHeader;
 import jenkins.model.GlobalConfiguration;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -26,6 +27,7 @@ import static io.jenkins.plugins.enums.Constants.PASSWORD;
  * Time:18:13
  */
 
+@Slf4j
 public class Utils {
 
     @NonNull
@@ -51,14 +53,14 @@ public class Utils {
             if(null != sysConfig){
                 var oldHeaders = sysConfig.getHttpHeaders();
                 for (var header : oldHeaders) {
-                    if (null != header.getHeaderKey() && PASSWORD.equals(header.getHeaderKey())) {
+                    if (null != header.getHeaderKey() && PASSWORD.equalsIgnoreCase(header.getHeaderKey())) {
                         oldPassword.put(PASSWORD,header.getHeaderValue());
                     }
                 }
             }
 
             headers.forEach(header -> {
-                if (null != header.getHeaderKey() && PASSWORD.equals(header.getHeaderKey())) {
+                if (null != header.getHeaderKey() && PASSWORD.equalsIgnoreCase(header.getHeaderKey())) {
                     final Base64.Encoder encoder = Base64.getEncoder();
                     final var pass = header.getHeaderValue();
                     if(null != pass && !pass.isEmpty()){
@@ -78,7 +80,7 @@ public class Utils {
     public static void decoderPassword(List<HttpHeader> headers) {
         if(null != headers && !headers.isEmpty()){
             headers.forEach(header -> {
-                if (null != header.getHeaderKey() && PASSWORD.equals(header.getHeaderKey())) {
+                if (null != header.getHeaderKey() && PASSWORD.equalsIgnoreCase(header.getHeaderKey())) {
                     final Base64.Decoder decoder = Base64.getDecoder();
                     final var pass = header.getHeaderValue();
                     if(null != pass && !pass.isEmpty()){

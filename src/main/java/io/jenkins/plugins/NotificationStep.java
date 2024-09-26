@@ -15,6 +15,7 @@ import io.jenkins.plugins.utils.HttpClient;
 import io.jenkins.plugins.utils.Utils;
 import jenkins.tasks.SimpleBuildStep;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.jenkinsci.Symbol;
 import org.kohsuke.stapler.DataBoundConstructor;
 
@@ -29,6 +30,7 @@ import static io.jenkins.plugins.enums.Constants.STEP_NAME;
  * Time:16:43
  */
 @Data
+@Slf4j
 public class NotificationStep extends Builder implements SimpleBuildStep {
 
     private String body;
@@ -42,10 +44,11 @@ public class NotificationStep extends Builder implements SimpleBuildStep {
     public void perform(@NonNull Run<?, ?> run, @NonNull FilePath workspace, @NonNull EnvVars env, @NonNull Launcher launcher, @NonNull TaskListener listener) throws InterruptedException, IOException {
         var envVar = Utils.getEnvVars(run, listener, JobStatus.RUNNING);
         envVar.put(NOTIFY_CONTENT, body);
+        log.info("Pipeline Status Notification send notify values : {}",envVar);
         try {
             HttpClient.executeRequest(envVar);
         } catch (Exception e) {
-            listener.getLogger().println(e);
+            listener.getLogger().println("Pipeline Status Notification send notify error : "+e.getMessage());
         }
     }
 
