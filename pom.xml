@@ -11,11 +11,11 @@
     </parent>
 
     <groupId>io.jenkins.plugins</groupId>
-    <artifactId>job-environment-notification</artifactId>
+    <artifactId>environment-variables-status-sync</artifactId>
     <version>${revision}</version>
     <packaging>hpi</packaging>
 
-    <name>Job Environment Notification</name>
+    <name>Job Environment Variables Status Sync</name>
     <url>https://github.com/jenkinsci/${project.artifactId}-plugin</url>
     <description>Dispatch job status notifications and incorporate notification steps into the build process.</description>
     <licenses>
