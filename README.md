@@ -2,20 +2,17 @@
 
 ## Introduction
 
-The plugin provides a seamless integration solution for developers from other platforms to monitor and interact with Jenkins pipelines. It allows external systems to easily retrieve pipeline task execution statuses, access environment variables related to pipeline runs, and send custom information during the pipeline execution process.
+The plugin offers a seamless integration framework for developers across various platforms, enabling them to effortlessly monitor and engage with Jenkins pipelines. This plugin facilitates external systems to:
++ 
++ **Retrieve Pipeline Task Execution Statuses**: It allows for a straightforward way to access and track the status of individual pipeline tasks, providing visibility into the progress and success of each step.
++ **Access Pipeline Environment Variables**: Users can seamlessly access environment variables associated with pipeline runs. This feature is crucial for understanding the context and environment within which the pipeline is executing, facilitating more informed decision-making and dynamic configuration.
++ **Send Custom Information During Pipeline Execution**: The plugin enables the transmission of custom information from external systems directly into the pipeline execution process. This allows for dynamic integration and customization, enhancing the flexibility and adaptability of CI/CD workflows.
 
-By leveraging this plugin, platform developers can enhance their CI/CD processes with minimal configuration. Users simply need to add the request URL and relevant information in the Jenkins system configuration, and the plugin will handle the communication between Jenkins and external platforms.
+By adopting this plugin, platform developers can significantly enhance their continuous integration and continuous deployment (CI/CD) processes, all with minimal configuration overhead. All that's required is to specify the request URL and pertinent details within the Jenkins system settings, and the plugin seamlessly manages the communication bridge between Jenkins and external platforms, streamlining integration and collaboration.
 
-The core functionalities of this plugin include:
-
-+ **Pipeline Task Execution Status:**  Sends the status of pipeline tasks in real-time to an external platform, enabling enhanced monitoring and decision-making.
-+ **Pipeline Environment Variables:**  Exposes key environment variables during pipeline execution to allow integration with external tools and systems.
-
-
-By simplifying the setup process and reducing manual effort, this plugin enhances the flexibility and capabilities of Jenkins pipelines, making it easier for external systems to track and respond to pipeline events without needing to directly manipulate Jenkins jobs.
 ## Getting started
 ### System Config
-![System Config](docs/img.png "System Config")
+![System Config](docs/img2.png "System Config")
 
 To begin using the plugin and integrating your external system with Jenkins pipelines, follow these steps:
 
