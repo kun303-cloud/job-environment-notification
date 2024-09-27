@@ -1,4 +1,4 @@
 <?jelly escape-by-default='true'?>
 <div>
-    This plugin helps users upload files or folders and send task notifications, as well as pipeline execution status updates.
+    Empowers third-party systems to seamlessly access real-time environment variables and execution status of Jenkins jobs.
 </div>
