@@ -11,11 +11,11 @@
     </parent>
 
     <groupId>io.jenkins.plugins</groupId>
-    <artifactId>pipeline-status-notification</artifactId>
+    <artifactId>job-environment-notification</artifactId>
     <version>${revision}</version>
     <packaging>hpi</packaging>
 
-    <name>Pipeline Status Notification</name>
+    <name>Job Environment Notification</name>
     <url>https://github.com/jenkinsci/${project.artifactId}-plugin</url>
     <description>Dispatch job status notifications and incorporate notification steps into the build process.</description>
     <licenses>
