@@ -15,6 +15,7 @@ import org.kohsuke.stapler.DataBoundConstructor;
 @ToString
 public class HttpHeader {
 
+    @SuppressWarnings("lgtm[jenkins/plaintext-storage]")
     private  String headerKey;
     private  String headerValue;
 
