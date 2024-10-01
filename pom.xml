@@ -46,7 +46,7 @@
         <gitHubRepo>jenkinsci/${project.artifactId}-plugin</gitHubRepo>
 
         <spotless.check.skip>false</spotless.check.skip>
-        <fastjson2.version>2.0.51</fastjson2.version>
+        <fastjson2.version>2.0.53</fastjson2.version>
     </properties>
 
     <dependencyManagement>
