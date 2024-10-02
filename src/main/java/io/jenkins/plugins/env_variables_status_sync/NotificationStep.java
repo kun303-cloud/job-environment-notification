@@ -1,4 +1,4 @@
-package io.jenkins.plugins;
+package io.jenkins.plugins.env_variables_status_sync;
 
 import edu.umd.cs.findbugs.annotations.NonNull;
 import hudson.EnvVars;
@@ -10,9 +10,10 @@ import hudson.model.Run;
 import hudson.model.TaskListener;
 import hudson.tasks.BuildStepDescriptor;
 import hudson.tasks.Builder;
-import io.jenkins.plugins.enums.JobStatus;
-import io.jenkins.plugins.utils.HttpClient;
-import io.jenkins.plugins.utils.Utils;
+import io.jenkins.plugins.Messages;
+import io.jenkins.plugins.env_variables_status_sync.enums.JobStatus;
+import io.jenkins.plugins.env_variables_status_sync.utils.HttpClient;
+import io.jenkins.plugins.env_variables_status_sync.utils.Utils;
 import jenkins.tasks.SimpleBuildStep;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -21,8 +22,8 @@ import org.kohsuke.stapler.DataBoundConstructor;
 
 import java.io.IOException;
 
-import static io.jenkins.plugins.enums.Constants.NOTIFY_CONTENT;
-import static io.jenkins.plugins.enums.Constants.STEP_NAME;
+import static io.jenkins.plugins.env_variables_status_sync.enums.Constants.NOTIFY_CONTENT;
+import static io.jenkins.plugins.env_variables_status_sync.enums.Constants.STEP_NAME;
 
 /**
  * Author: kun.tang@daocloud.io

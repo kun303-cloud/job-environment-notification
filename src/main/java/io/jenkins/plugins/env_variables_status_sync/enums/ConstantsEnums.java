@@ -1,4 +1,4 @@
-package io.jenkins.plugins.enums;
+package io.jenkins.plugins.env_variables_status_sync.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

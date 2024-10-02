@@ -1,4 +1,4 @@
-package io.jenkins.plugins.model;
+package io.jenkins.plugins.env_variables_status_sync.model;
 
 import lombok.Data;
 import lombok.ToString;

@@ -1,8 +1,8 @@
-package io.jenkins.plugins;
+package io.jenkins.plugins.env_variables_status_sync;
 
 import hudson.Extension;
-import io.jenkins.plugins.enums.HttpMethod;
-import io.jenkins.plugins.model.HttpHeader;
+import io.jenkins.plugins.env_variables_status_sync.enums.HttpMethod;
+import io.jenkins.plugins.env_variables_status_sync.model.HttpHeader;
 import jenkins.model.GlobalConfiguration;
 import lombok.Getter;
 import lombok.ToString;
@@ -12,8 +12,8 @@ import org.kohsuke.stapler.StaplerRequest;
 
 import java.util.List;
 
-import static io.jenkins.plugins.enums.Constants.*;
-import static io.jenkins.plugins.utils.Utils.encoderPassword;
+import static io.jenkins.plugins.env_variables_status_sync.enums.Constants.*;
+import static io.jenkins.plugins.env_variables_status_sync.utils.Utils.encoderPassword;
 
 /**
  * Author: kun.tang@daocloud.io

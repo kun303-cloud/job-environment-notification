@@ -1,10 +1,10 @@
-package io.jenkins.plugins.utils;
+package io.jenkins.plugins.env_variables_status_sync.utils;
 
 
 import com.alibaba.fastjson2.JSONObject;
-import io.jenkins.plugins.JobRunListenerSysConfig;
-import io.jenkins.plugins.enums.HttpMethod;
-import io.jenkins.plugins.model.HttpHeader;
+import io.jenkins.plugins.env_variables_status_sync.JobRunListenerSysConfig;
+import io.jenkins.plugins.env_variables_status_sync.enums.HttpMethod;
+import io.jenkins.plugins.env_variables_status_sync.model.HttpHeader;
 import jenkins.model.GlobalConfiguration;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
@@ -17,8 +17,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-import static io.jenkins.plugins.utils.Utils.decoderPassword;
-import static io.jenkins.plugins.utils.Utils.encoderPassword;
+import static io.jenkins.plugins.env_variables_status_sync.utils.Utils.decoderPassword;
+import static io.jenkins.plugins.env_variables_status_sync.utils.Utils.encoderPassword;
 
 
 /**

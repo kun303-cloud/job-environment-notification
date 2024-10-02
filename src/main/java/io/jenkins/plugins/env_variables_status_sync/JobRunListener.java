@@ -1,4 +1,4 @@
-package io.jenkins.plugins;
+package io.jenkins.plugins.env_variables_status_sync;
 
 import edu.umd.cs.findbugs.annotations.NonNull;
 import hudson.EnvVars;
@@ -6,13 +6,11 @@ import hudson.Extension;
 import hudson.model.Run;
 import hudson.model.TaskListener;
 import hudson.model.listeners.RunListener;
-import io.jenkins.plugins.enums.JobStatus;
-import io.jenkins.plugins.utils.HttpClient;
+import io.jenkins.plugins.env_variables_status_sync.enums.JobStatus;
+import io.jenkins.plugins.env_variables_status_sync.utils.HttpClient;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.IOException;
-
-import static io.jenkins.plugins.utils.Utils.getEnvVars;
+import static io.jenkins.plugins.env_variables_status_sync.utils.Utils.getEnvVars;
 
 
 /**

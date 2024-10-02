@@ -1,14 +1,14 @@
-package io.jenkins.plugins.utils;
+package io.jenkins.plugins.env_variables_status_sync.utils;
 
 import edu.umd.cs.findbugs.annotations.NonNull;
 import hudson.EnvVars;
 import hudson.model.Result;
 import hudson.model.Run;
 import hudson.model.TaskListener;
-import io.jenkins.plugins.JobRunListenerSysConfig;
-import io.jenkins.plugins.enums.ConstantsEnums;
-import io.jenkins.plugins.enums.JobStatus;
-import io.jenkins.plugins.model.HttpHeader;
+import io.jenkins.plugins.env_variables_status_sync.JobRunListenerSysConfig;
+import io.jenkins.plugins.env_variables_status_sync.enums.ConstantsEnums;
+import io.jenkins.plugins.env_variables_status_sync.enums.JobStatus;
+import io.jenkins.plugins.env_variables_status_sync.model.HttpHeader;
 import jenkins.model.GlobalConfiguration;
 import lombok.extern.slf4j.Slf4j;
 
@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static io.jenkins.plugins.enums.Constants.PASSWORD;
+import static io.jenkins.plugins.env_variables_status_sync.enums.Constants.PASSWORD;
 
 /**
  * Author: kun.tang@daocloud.io
